@@ -1,13 +1,8 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <title>reCAPTCHA Verification</title>
 
-    <script
-      src="https://www.google.com/recaptcha/api.js?render=6LcQ5XQpAAAAAI58R2Z8DysNmI7-bHwMr-3JGyfH"
-      async
-      defer
-    ></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         let checkRecaptchaLoad = setInterval(function () {
@@ -26,44 +21,14 @@
         }, 100); // Check every 100 milliseconds
       });
     </script>
-  </head>
-  <body>
-    <h2>Loading OTP reCAPTCHA...</h2>
-  </body>
-</html> -->
 
-<html>
-  <head>
-    <title>reCAPTCHA demo: Explicit render after an onload callback</title>
-    <script type="text/javascript">
-      var onloadCallback = function () {
-        grecaptcha.render("html_element", {
-          sitekey: "6LcQ5XQpAAAAAI58R2Z8DysNmI7-bHwMr-3JGyfH",
-          callback: function () {
-            grecaptcha.ready(function () {
-              grecaptcha
-                .execute("6LcQ5XQpAAAAAI58R2Z8DysNmI7-bHwMr-3JGyfH", {action: "verify"})
-                .then(function (token) {
-                  if (window.ReactNativeWebView) {
-                    window.ReactNativeWebView.postMessage(token);
-                  }
-                });
-            });
-          },
-        });
-      };
-    </script>
-  </head>
-  <body>
-    <form action="?" method="POST">
-      <div id="html_element"></div>
-      <br />
-      <input type="submit" value="Submit" />
-    </form>
     <script
-      src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+      src="https://www.google.com/recaptcha/api.js?render=6LcQ5XQpAAAAAI58R2Z8DysNmI7-bHwMr-3JGyfH"
       async
       defer
     ></script>
+  </head>
+  <body>
+    <h2>Loading OTP reCAPTCHA...</h2>
   </body>
 </html>
