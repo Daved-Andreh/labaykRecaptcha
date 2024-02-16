@@ -10,19 +10,24 @@
     ></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        grecaptcha.ready(function () {
-          grecaptcha
-            .execute("6LcQ5XQpAAAAAI58R2Z8DysNmI7-bHwMr-3JGyfH", {action: "verify"})
-            .then(function (token) {
-              if (window.ReactNativeWebView) {
-                window.ReactNativeWebView.postMessage(token);
-              }
+        let checkRecaptchaLoad = setInterval(function () {
+          if (typeof grecaptcha !== "undefined" && grecaptcha && grecaptcha.render) {
+            clearInterval(checkRecaptchaLoad);
+            grecaptcha.ready(function () {
+              grecaptcha
+                .execute("6LcQ5XQpAAAAAI58R2Z8DysNmI7-bHwMr-3JGyfH", {action: "verify"})
+                .then(function (token) {
+                  if (window.ReactNativeWebView) {
+                    window.ReactNativeWebView.postMessage(token);
+                  }
+                });
             });
-        });
+          }
+        }, 100); // Check every 100 milliseconds
       });
     </script>
   </head>
   <body>
-    <h2>Loading reCAPTCHA...</h2>
+    <h2>Loading OTP reCAPTCHA...</h2>
   </body>
 </html>
