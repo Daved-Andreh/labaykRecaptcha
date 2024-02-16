@@ -2,17 +2,23 @@
 <html>
   <head>
     <title>reCAPTCHA Verification</title>
-    <script src="https://www.google.com/recaptcha/api.js?render=6LcQ5XQpAAAAAI58R2Z8DysNmI7-bHwMr-3JGyfH"></script>
+
+    <script
+      src="https://www.google.com/recaptcha/api.js?render=6LcQ5XQpAAAAAI58R2Z8DysNmI7-bHwMr-3JGyfH"
+      async
+      defer
+    ></script>
     <script>
-      grecaptcha.ready(function () {
-        grecaptcha
-          .execute("6LcQ5XQpAAAAAI58R2Z8DysNmI7-bHwMr-3JGyfH", {action: "verify"})
-          .then(function (token) {
-            // Post the token back to the React Native WebView
-            if (window.ReactNativeWebView) {
-              window.ReactNativeWebView.postMessage(token);
-            }
-          });
+      document.addEventListener("DOMContentLoaded", function () {
+        grecaptcha.ready(function () {
+          grecaptcha
+            .execute("6LcQ5XQpAAAAAI58R2Z8DysNmI7-bHwMr-3JGyfH", {action: "homepage"})
+            .then(function (token) {
+              if (window.ReactNativeWebView) {
+                window.ReactNativeWebView.postMessage(token);
+              }
+            });
+        });
       });
     </script>
   </head>
